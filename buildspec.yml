@@ -3,28 +3,32 @@ version: 0.2
 run-as: root
 
 env:
-  parameter-store:
-    DB_NAME: "/harsh/DB_NAME"
-    DB_USER: "/harsh/DB_USER"
-    DB_PASSWORD: "/harsh/DB_PASSWORD"
-    DB_HOST: "/harsh/DB_HOST"
-
+   parameter-store:
+             DB_NAME: "/harsh/DB_NAME"
+             DB_USER: "/harsh/DB_USER"
+             DB_PASSWORD: "/harsh/DB_PASSWORD"
+             DB_HOST: "/harsh/DB_HOST"
+             
 phases:
-  pre_build:
-    commands:
-      - apt update -y
-      - echo "Installing Wordpress dependencies"
-      - apt install nginx -y
-      - apt install php php-fpm -y  
-  build:
-    commands:
-      - sed -i 's/database_name_here/'$DB_NAME'/' wp-config.php
-      - sed -i 's/username_here/'$DB_USER'/' wp-config.php
-      - sed -i 's/password_here/'$DB_PASSWORD'/' wp-config.php
-      - sed -i 's/localhost/'$DB_HOST'/' wp-config.php
-      - echo "$DB_USER"
-      - printenv
+   pre_build:
+      commands:
+        - echo "Pre build step executing"
+        - apt update -y
+        - echo "Installing Nginx and php"
+        - apt install nginx -y
+        - apt install php php-fpm -y
+        - echo "Installed pre_build commands"
+        
+   build:
+      commands:
+          - sed -i 's/database_name_here/'$DB_NAME'/' wp-config.php
+          - sed -i 's/username_here/'$DB_USER'/' wp-config.php
+          - sed -i 's/password_here/'$DB_PASSWORD'/' wp-config.php
+          - sed -i 's/localhost/'$DB_HOST'/' wp-config.php
+          
+            
 artifacts:
   files:
-    - echo "uplods artifact to bucket for deploy"
+    - echo "Upload artifact to bucket for deploy"
     - '**/*'
+          
