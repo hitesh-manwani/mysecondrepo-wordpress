@@ -1,13 +1,12 @@
-version: 0:0
+version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/harsh.rtd.squareops.co.in
+    destination: /var/www/harsh.rtd.sqaureops.co.in
     overwrite: true
- 
- 
-   hooks:
-      BeforeInstall:
+
+hooks:
+  BeforeInstall:
     - location: scripts/install.sh
       timeout: 500
       runas: root
