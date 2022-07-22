@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/harsh.rtd.sqaureops.co.in
+    destination: /var/www/harsh.rtd.squareops.co.in
     overwrite: true
 
 hooks:
